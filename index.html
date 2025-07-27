@@ -11,32 +11,6 @@
             box-sizing: border-box;
         }
 
-        // Load profile image
-        async function loadProfileImage() {
-            try {
-                const imageData = await window.fs.readFile('image');
-                const blob = new Blob([imageData]);
-                const imageUrl = URL.createObjectURL(blob);
-                
-                const profilePhoto = document.getElementById('profilePhoto');
-                const fallbackInitials = document.getElementById('fallbackInitials');
-                
-                profilePhoto.src = imageUrl;
-                profilePhoto.onload = function() {
-                    profilePhoto.style.display = 'block';
-                    fallbackInitials.style.display = 'none';
-                };
-            } catch (error) {
-                console.log('Profile image not found, using initials fallback');
-                // Keep the fallback initials visible
-            }
-        }
-
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', function() {
-            loadProfileImage();
-        });
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -89,6 +63,7 @@
             text-decoration: none;
             transition: color 0.3s ease;
             position: relative;
+            cursor: pointer;
         }
 
         .nav-links a:hover {
@@ -465,11 +440,11 @@
             <div class="nav-container">
                 <div class="logo">Jainish Patel</div>
                 <ul class="nav-links">
-                    <li><a href="#" onclick="showSection('home')">Home</a></li>
-                    <li><a href="#" onclick="showSection('resume')">Resume</a></li>
-                    <li><a href="#" onclick="showSection('coursework')">Coursework</a></li>
-                    <li><a href="#" onclick="showSection('projects')">Projects</a></li>
-                    <li><a href="#" onclick="showSection('blog')">Blog</a></li>
+                    <li><a onclick="showSection('home')">Home</a></li>
+                    <li><a onclick="showSection('resume')">Resume</a></li>
+                    <li><a onclick="showSection('coursework')">Coursework</a></li>
+                    <li><a onclick="showSection('projects')">Projects</a></li>
+                    <li><a onclick="showSection('blog')">Blog</a></li>
                 </ul>
             </div>
         </nav>
@@ -494,8 +469,8 @@
                     <span class="skill-tag">Microsoft 365</span>
                 </div>
                 <div class="cta-buttons">
-                    <a href="#" onclick="showSection('resume')" class="btn btn-primary">View Resume</a>
-                    <a href="#" onclick="showSection('projects')" class="btn btn-secondary">See Projects</a>
+                    <a onclick="showSection('resume')" class="btn btn-primary">View Resume</a>
+                    <a onclick="showSection('projects')" class="btn btn-secondary">See Projects</a>
                 </div>
             </div>
             
@@ -634,91 +609,90 @@
             <div style="padding: 2rem;">
                 <h2>Coursework</h2>
                 <p style="margin-bottom: 2rem; color: #555; font-size: 1.1rem;">
-                    Here's a comprehensive overview of the courses I've completed during my computer science program, 
-                    organized by category and academic year.
+                    Here's a comprehensive overview of the courses I've completed during my computer science program at Georgia State University.
                 </p>
 
                 <div class="course-grid">
                     <div class="course-card">
-                        <div class="course-title">Data Structures & Algorithms</div>
-                        <div class="course-code">CS 301 • Fall 2023</div>
-                        <p>Comprehensive study of fundamental data structures (arrays, linked lists, trees, graphs) and algorithmic paradigms. Implemented various sorting and searching algorithms with complexity analysis.</p>
+                        <div class="course-title">Introduction to Programming</div>
+                        <div class="course-code">CS 1301 • Fall 2021</div>
+                        <p>Fundamental programming concepts using Python. Covered variables, control structures, functions, and basic data structures.</p>
                         <div style="margin-top: 1rem;">
-                            <strong>Grade:</strong> A | <strong>Projects:</strong> Binary Search Tree, Graph Traversal Algorithms
+                            <strong>Grade:</strong> A | <strong>Focus:</strong> Python fundamentals and problem-solving
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="course-title">Data Structures & Algorithms</div>
+                        <div class="course-code">CS 1332 • Spring 2022</div>
+                        <p>Comprehensive study of fundamental data structures (arrays, linked lists, trees, graphs) and algorithmic paradigms with Java implementation.</p>
+                        <div style="margin-top: 1rem;">
+                            <strong>Grade:</strong> B+ | <strong>Projects:</strong> Binary Search Tree, Graph Algorithms
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="course-title">Computer Organization</div>
+                        <div class="course-code">CS 2110 • Fall 2022</div>
+                        <p>Computer architecture, assembly language programming, and system-level understanding of how software interacts with hardware.</p>
+                        <div style="margin-top: 1rem;">
+                            <strong>Grade:</strong> B | <strong>Focus:</strong> Assembly language and computer architecture
                         </div>
                     </div>
 
                     <div class="course-card">
                         <div class="course-title">Database Systems</div>
-                        <div class="course-code">CS 350 • Spring 2024</div>
-                        <p>Database design principles, SQL programming, normalization, and transaction management. Built a complete database system for a library management application.</p>
+                        <div class="course-code">CS 4400 • Spring 2023</div>
+                        <p>Database design principles, SQL programming, normalization, and transaction management. Practical experience with relational databases.</p>
                         <div style="margin-top: 1rem;">
-                            <strong>Grade:</strong> A- | <strong>Final Project:</strong> Library Management System
+                            <strong>Grade:</strong> A- | <strong>Project:</strong> Complete database design for business application
                         </div>
                     </div>
 
                     <div class="course-card">
                         <div class="course-title">Software Engineering</div>
-                        <div class="course-code">CS 405 • Fall 2024</div>
-                        <p>Software development lifecycle, design patterns, testing methodologies, and team collaboration. Developed a full-stack web application using agile methodologies.</p>
+                        <div class="course-code">CS 3300 • Fall 2023</div>
+                        <p>Software development lifecycle, design patterns, testing methodologies, and team collaboration using agile development practices.</p>
                         <div style="margin-top: 1rem;">
-                            <strong>Grade:</strong> A | <strong>Team Project:</strong> Task Management Web App
-                        </div>
-                    </div>
-
-                    <div class="course-card">
-                        <div class="course-title">Machine Learning</div>
-                        <div class="course-code">CS 470 • Spring 2024</div>
-                        <p>Supervised and unsupervised learning algorithms, neural networks, and practical applications. Implemented various ML models from scratch and used popular libraries.</p>
-                        <div style="margin-top: 1rem;">
-                            <strong>Grade:</strong> B+ | <strong>Final Project:</strong> Image Classification System
+                            <strong>Grade:</strong> A | <strong>Team Project:</strong> Full-stack web application
                         </div>
                     </div>
 
                     <div class="course-card">
                         <div class="course-title">Web Development</div>
-                        <div class="course-code">CS 340 • Fall 2023</div>
-                        <p>Full-stack web development using modern frameworks. Covered HTML, CSS, JavaScript, React, Node.js, and RESTful API design.</p>
+                        <div class="course-code">CS 3000 • Spring 2024</div>
+                        <p>Full-stack web development covering HTML, CSS, JavaScript, and server-side programming. Built multiple interactive web applications.</p>
                         <div style="margin-top: 1rem;">
                             <strong>Grade:</strong> A | <strong>Portfolio:</strong> 5 Complete Web Applications
                         </div>
                     </div>
 
                     <div class="course-card">
-                        <div class="course-title">Computer Networks</div>
-                        <div class="course-code">CS 420 • Spring 2024</div>
-                        <p>Network protocols, architecture, and security. Studied TCP/IP, HTTP, DNS, and implemented a simple client-server application.</p>
-                        <div style="margin-top: 1rem;">
-                            <strong>Grade:</strong> B+ | <strong>Lab Project:</strong> Chat Application with Socket Programming
-                        </div>
-                    </div>
-
-                    <div class="course-card">
                         <div class="course-title">Operating Systems</div>
-                        <div class="course-code">CS 415 • Fall 2024</div>
-                        <p>Process management, memory allocation, file systems, and concurrency. Implemented system calls and studied kernel-level programming.</p>
+                        <div class="course-code">CS 3210 • Fall 2024</div>
+                        <p>Process management, memory allocation, file systems, and concurrency. Hands-on experience with system-level programming.</p>
                         <div style="margin-top: 1rem;">
-                            <strong>Grade:</strong> A- | <strong>Current:</strong> Building a Simple OS Kernel
+                            <strong>Grade:</strong> B+ | <strong>Current:</strong> System programming projects
                         </div>
                     </div>
 
                     <div class="course-card">
-                        <div class="course-title">Discrete Mathematics</div>
-                        <div class="course-code">MATH 280 • Spring 2023</div>
-                        <p>Mathematical foundations for computer science including logic, set theory, combinatorics, and graph theory.</p>
+                        <div class="course-title">Network Security</div>
+                        <div class="course-code">CS 4235 • Spring 2025</div>
+                        <p>Currently enrolled. Study of network protocols, cybersecurity principles, and hands-on experience with security tools and techniques.</p>
                         <div style="margin-top: 1rem;">
-                            <strong>Grade:</strong> A | <strong>Focus:</strong> Proof Techniques & Algorithm Analysis
+                            <strong>Status:</strong> In Progress | <strong>Focus:</strong> Cybersecurity and network protocols
                         </div>
                     </div>
                 </div>
 
                 <div style="margin-top: 3rem; padding: 2rem; background: rgba(52, 152, 219, 0.1); border-radius: 15px;">
-                    <h3 style="color: #2c3e50; margin-bottom: 1rem;">Academic Achievements</h3>
+                    <h3 style="color: #2c3e50; margin-bottom: 1rem;">Academic Progress</h3>
                     <ul style="color: #555; line-height: 1.8;">
-                        <li><strong>Cumulative GPA:</strong> 3.7/4.0</li>
-                        <li><strong>Dean's List:</strong> Fall 2023, Spring 2024</li>
-                        <li><strong>Major GPA:</strong> 3.8/4.0</li>
-                        <li><strong>Relevant Math Courses:</strong> Calculus I-III, Linear Algebra, Statistics</li>
+                        <li><strong>Expected Graduation:</strong> May 2025</li>
+                        <li><strong>Academic Standing:</strong> Good standing</li>
+                        <li><strong>Focus Areas:</strong> Software Development, Database Systems, IT Support</li>
+                        <li><strong>Relevant Math Courses:</strong> Calculus I-II, Discrete Mathematics, Statistics</li>
                     </ul>
                 </div>
             </div>
@@ -730,53 +704,178 @@
                 <h2>Projects</h2>
                 <p style="margin-bottom: 2rem; color: #555; font-size: 1.1rem;">
                     A showcase of my technical projects demonstrating various skills in software development, 
-                    machine learning, and web technologies.
+                    database management, and web technologies.
                 </p>
 
                 <div class="project-grid">
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">AI Study Companion</div>
-                            <div class="project-tech">Python • Machine Learning • Natural Language Processing</div>
+                            <div class="project-title">Employee Management System</div>
+                            <div class="project-tech">Python • SQLite • Command Line Interface</div>
                         </div>
                         <div class="project-body">
-                            <p>An intelligent tutoring system that helps students learn programming concepts through personalized explanations and code analysis. Uses NLP to understand student questions and provides contextual help.</p>
+                            <p>A comprehensive command-line tool to manage employee records with full CRUD operations. Features include add, update, delete, and search functions with data persistence using SQLite database.</p>
                             <ul style="margin: 1rem 0; color: #555;">
-                                <li>Built custom ML models for code analysis and error detection</li>
-                                <li>Implemented real-time feedback system</li>
-                                <li>Achieved 85% accuracy in identifying common programming errors</li>
+                                <li>Implemented complete database schema design with normalization</li>
+                                <li>Built intuitive command-line interface with error handling</li>
+                                <li>Added data validation and input sanitization</li>
+                                <li>Created comprehensive documentation and user guide</li>
                             </ul>
                             <div class="project-links">
-                                <a href="#" class="project-link">View Code</a>
-                                <a href="#" class="project-link">Live Demo</a>
+                                <a href="#" class="project-link">GitHub Repository</a>
+                                <a href="#" class="project-link">Documentation</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="project-card">
                         <div class="project-header">
-                            <div class="project-title">Task Management Web App</div>
-                            <div class="project-tech">React • Node.js • MongoDB • Express</div>
+                            <div class="project-title">Study Group Finder Website</div>
+                            <div class="project-tech">HTML • CSS • JavaScript • Python • SQL</div>
                         </div>
                         <div class="project-body">
-                            <p>A full-stack productivity application with team collaboration features, real-time updates, and project analytics. Built as part of Software Engineering coursework.</p>
+                            <p>A web application that connects students based on courses and study preferences. Features user registration, profile matching, and group formation capabilities with a responsive design.</p>
                             <ul style="margin: 1rem 0; color: #555;">
-                                <li>Implemented JWT authentication and authorization</li>
-                                <li>Real-time collaboration using WebSocket connections</li>
-                                <li>Responsive design supporting mobile and desktop</li>
+                                <li>Developed matching algorithm based on course schedules and preferences</li>
+                                <li>Implemented user authentication and session management</li>
+                                <li>Created responsive design for mobile and desktop compatibility</li>
+                                <li>Built comprehensive admin panel for group management</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="#" class="project-link">Live Demo</a>
+                                <a href="#" class="project-link">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">IT Support Ticketing System</div>
+                            <div class="project-tech">Python • Flask • MySQL • Bootstrap</div>
+                        </div>
+                        <div class="project-body">
+                            <p>A web-based ticketing system designed to streamline IT support requests. Built based on real-world experience supporting 40+ staff members at Gold-N-Diamond.</p>
+                            <ul style="margin: 1rem 0; color: #555;">
+                                <li>Developed priority-based ticket assignment system</li>
+                                <li>Implemented role-based access control for different user types</li>
+                                <li>Created automated email notifications and status updates</li>
+                                <li>Built comprehensive reporting dashboard for support metrics</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="#" class="project-link">View Project</a>
+                                <a href="#" class="project-link">Technical Details</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-title">Network Monitoring Tool</div>
+                            <div class="project-tech">Python • Network Programming • Data Visualization</div>
+                        </div>
+                        <div class="project-body">
+                            <p>A Python-based network monitoring tool that tracks device connectivity, bandwidth usage, and network performance metrics in real-time.</p>
+                            <ul style="margin: 1rem 0; color: #555;">
+                                <li>Implemented ICMP ping monitoring for device availability</li>
+                                <li>Created real-time dashboard with network performance graphs</li>
+                                <li>Built alert system for network outages and performance issues</li>
+                                <li>Designed configurable monitoring intervals and thresholds</li>
                             </ul>
                             <div class="project-links">
                                 <a href="#" class="project-link">GitHub</a>
-                                <a href="#" class="project-link">Live Site</a>
+                                <a href="#" class="project-link">Demo Video</a>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-title">Image Classification System</div>
-                            <div class="project-tech">Python • TensorFlow • Computer Vision • Deep Learning</div>
+        <!-- Blog Section -->
+        <section id="blog" class="section">
+            <div style="padding: 2rem;">
+                <h2>Blog</h2>
+                <p style="margin-bottom: 2rem; color: #555; font-size: 1.1rem;">
+                    Sharing my thoughts on technology, learning experiences, and insights from my journey in IT support and computer science.
+                </p>
+
+                <div class="blog-posts">
+                    <article class="blog-post">
+                        <div class="blog-date">January 15, 2025</div>
+                        <h3 class="blog-title">My Journey from IT Support to Software Development</h3>
+                        <div class="blog-excerpt">
+                            <p>Reflecting on how my experience in IT support has shaped my approach to software development. Working with real users and solving their daily technical challenges has given me unique insights into what makes software truly user-friendly. From troubleshooting printer issues to managing user accounts, every support ticket has taught me something valuable about system design and user experience.</p>
+                            <p>The transition from solving immediate technical problems to building long-term software solutions has been both challenging and rewarding...</p>
                         </div>
-                        <div class="project-body">
-                            <p>A convolutional neural network for classifying images across 10 different categories with high accuracy. Includes data preprocessing, model training, and evaluation components.</p>
-                            <ul style="margin: 1rem 0; color: #555;">
+                    </article>
+
+                    <article class="blog-post">
+                        <div class="blog-date">December 8, 2024</div>
+                        <h3 class="blog-title">Building Scalable Employee Management Systems</h3>
+                        <div class="blog-excerpt">
+                            <p>Recently completed my Employee Management System project using Python and SQLite. This post covers the challenges I faced in designing a scalable database schema, implementing efficient search algorithms, and creating an intuitive command-line interface. Key lessons learned about data validation, error handling, and the importance of user feedback in system design.</p>
+                            <p>One of the most interesting challenges was optimizing the search functionality for large datasets while maintaining simplicity...</p>
+                        </div>
+                    </article>
+
+                    <article class="blog-post">
+                        <div class="blog-date">November 22, 2024</div>
+                        <h3 class="blog-title">The Intersection of Academic Learning and Real-World IT</h3>
+                        <div class="blog-excerpt">
+                            <p>How my computer science coursework complements my hands-on IT support experience. Exploring the gap between theoretical knowledge and practical application, and sharing tips for students looking to gain real-world experience while pursuing their degree. Discussion on the value of understanding both the technical and human sides of technology.</p>
+                            <p>The most valuable skill I've developed is the ability to translate complex technical concepts into understandable solutions...</p>
+                        </div>
+                    </article>
+
+                    <article class="blog-post">
+                        <div class="blog-date">October 30, 2024</div>
+                        <h3 class="blog-title">Lessons from Supporting 40+ Remote Workers</h3>
+                        <div class="blog-excerpt">
+                            <p>Insights gained from providing technical support to a diverse team of remote workers during my time at Gold-N-Diamond. From troubleshooting network connectivity issues to managing cloud-based productivity tools, this experience has taught me about the critical role IT support plays in modern business operations.</p>
+                            <p>Remote support requires a different approach than in-person troubleshooting. Clear communication and systematic problem-solving become even more important...</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Load profile image
+        async function loadProfileImage() {
+            try {
+                const imageData = await window.fs.readFile('image');
+                const blob = new Blob([imageData]);
+                const imageUrl = URL.createObjectURL(blob);
+                
+                const profilePhoto = document.getElementById('profilePhoto');
+                const fallbackInitials = document.getElementById('fallbackInitials');
+                
+                if (profilePhoto && fallbackInitials) {
+                    profilePhoto.src = imageUrl;
+                    profilePhoto.onload = function() {
+                        profilePhoto.style.display = 'block';
+                        fallbackInitials.style.display = 'none';
+                    };
+                }
+            } catch (error) {
+                console.log('Profile image not found, using initials fallback');
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProfileImage();
+        });
+    </script>
+</body>
+</html>
